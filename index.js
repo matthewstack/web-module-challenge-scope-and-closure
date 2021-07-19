@@ -13,6 +13,8 @@
  * It returns the string `foofoo`
 */
 
+// 
+
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
@@ -62,9 +64,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  return Math.floor(Math.random() * 3) 
 }
+console.log('task 2', inning());
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -81,19 +84,33 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, inningsPlayed){
+  const theScore = {
+    Home: 0,
+    Away: 0
+  }
+
+  for (let i = 1; i < inningsPlayed; i++){
+    theScore.Home += inningCB();
+    theScore.Away += inningCB();
+  }
+  return theScore
 }
+console.log('task3', finalScore(inning, 9))
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningCB) {
+  return {
+    Home: inningCB(),
+    Away: inningCB()
+  }
 }
 
+console.log('task4', getInningScore(inning))
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -136,10 +153,29 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScoreCB, inningCB, inningsPlayed) {
+  const gameScoreboard = [];
+  let homeScore = 0;
+  let awayScore = 0;
+
+
+  for(let i = 0; i < inningsPlayed; i++){
+    const currentScore = getInningScoreCB(inningCB);
+    homeScore = homeScore + currentScore.Home;
+    awayScore = awayScore + currentScore.Away;
+    gameScoreboard.push(`Inning ${i+1}: Away ${awayScore} - Home ${homeScore}`)
+  }
+
+  if (homeScore === awayScore){
+    gameScoreboard.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`)
+  }
+    else {gameScoreboard.push(`Final Score: Away ${awayScore} - Home ${homeScore}`)
+  }
+return gameScoreboard;
 }
 
+console.log('task5', scoreboard(getInningScore, inning, 9))
+;
 
 
 
