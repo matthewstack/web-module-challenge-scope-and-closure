@@ -59,6 +59,7 @@ You will be running your tests in one terminal and debugging in the other. As yo
 Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
+It gives access from within the local scrope of a function to the outer scope. 
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -80,9 +81,11 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+    console.log(`${name} rolled a ${newRoll}`)  --  The innerscope is referencing the a variable (name) of the outer scope 
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
 
+c. What is the lexical scope of `newRoll`? 
+    
 
 ### Task 3 - Stretch Goals
 

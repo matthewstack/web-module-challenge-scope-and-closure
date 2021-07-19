@@ -30,11 +30,17 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+      Count is a local variable in counter 1 and it's a global variable in counter 2. 
   
   2. Which of the two uses a closure? How can you tell?
-  
+
+      Counter 1 uses a closure within function counterMaker(), count is locally scoped.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     
+     Scenario 1 would be ideal in most scenarios, it won't potentially cause errors using the same variable.  Counter2 would be better if you needed to access the variable globally. 
 */
 
 // counter1 code
@@ -53,7 +59,6 @@ let count = 0;
 function counter2() {
   return count++;
 }
-
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -90,7 +95,7 @@ function finalScore(inningCB, inningsPlayed){
     Away: 0
   }
 
-  for (let i = 1; i < inningsPlayed; i++){
+  for (let i = 0; i < inningsPlayed; i++){
     theScore.Home += inningCB();
     theScore.Away += inningCB();
   }
@@ -177,7 +182,7 @@ return gameScoreboard;
 console.log('task5', scoreboard(getInningScore, inning, 9))
 ;
 
-
+console.log
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
